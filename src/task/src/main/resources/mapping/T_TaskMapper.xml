@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mybatis.mapper.T_TaskMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.mybatis.model.T_Task">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="taskname" jdbcType="VARCHAR" property="taskname" />
+    <result column="starttime" jdbcType="DATE" property="starttime" />
+    <result column="endtime" jdbcType="DATE" property="endtime" />
+    <result column="self_assessment" jdbcType="INTEGER" property="selfAssessment" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.mybatis.model.T_TaskWithBLOBs">
+    <result column="actualusingtime" jdbcType="LONGVARCHAR" property="actualusingtime" />
+    <result column="parentcheck" jdbcType="LONGVARCHAR" property="parentcheck" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, taskname, starttime, endtime, self_assessment
+  </sql>
+  <sql id="Blob_Column_List">
+    actualusingtime, parentcheck
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_task
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_task
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.mybatis.model.T_TaskWithBLOBs">
+    insert into t_task (id, taskname, starttime, 
+      endtime, self_assessment, actualusingtime, 
+      parentcheck)
+    values (#{id,jdbcType=INTEGER}, #{taskname,jdbcType=VARCHAR}, #{starttime,jdbcType=DATE}, 
+      #{endtime,jdbcType=DATE}, #{selfAssessment,jdbcType=INTEGER}, #{actualusingtime,jdbcType=LONGVARCHAR}, 
+      #{parentcheck,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.mybatis.model.T_TaskWithBLOBs">
+    insert into t_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskname != null">
+        taskname,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="selfAssessment != null">
+        self_assessment,
+      </if>
+      <if test="actualusingtime != null">
+        actualusingtime,
+      </if>
+      <if test="parentcheck != null">
+        parentcheck,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="taskname != null">
+        #{taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=DATE},
+      </if>
+      <if test="selfAssessment != null">
+        #{selfAssessment,jdbcType=INTEGER},
+      </if>
+      <if test="actualusingtime != null">
+        #{actualusingtime,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="parentcheck != null">
+        #{parentcheck,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.mybatis.model.T_TaskWithBLOBs">
+    update t_task
+    <set>
+      <if test="taskname != null">
+        taskname = #{taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=DATE},
+      </if>
+      <if test="selfAssessment != null">
+        self_assessment = #{selfAssessment,jdbcType=INTEGER},
+      </if>
+      <if test="actualusingtime != null">
+        actualusingtime = #{actualusingtime,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="parentcheck != null">
+        parentcheck = #{parentcheck,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.mybatis.model.T_TaskWithBLOBs">
+    update t_task
+    set taskname = #{taskname,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=DATE},
+      endtime = #{endtime,jdbcType=DATE},
+      self_assessment = #{selfAssessment,jdbcType=INTEGER},
+      actualusingtime = #{actualusingtime,jdbcType=LONGVARCHAR},
+      parentcheck = #{parentcheck,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.mybatis.model.T_Task">
+    update t_task
+    set taskname = #{taskname,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=DATE},
+      endtime = #{endtime,jdbcType=DATE},
+      self_assessment = #{selfAssessment,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
