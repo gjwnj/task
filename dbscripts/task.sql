@@ -40,6 +40,7 @@ lastday INT -- 连续签到天数
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 SELECT * FROM t_user
+INSERT INTO t_user(uid) VALUES(127)
 
 
 

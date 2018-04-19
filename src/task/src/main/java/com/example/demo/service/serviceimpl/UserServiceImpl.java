@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService
 	public boolean adduser(T_User user)
 	{
 		//1成功  0失败
-		int result=tu.insert(user);
+		int result=tu.insertSelective(user);
 		if(result==1)
 		{
 			return true;
