@@ -3,9 +3,8 @@ package com.example.demo.mybatis.model;
 public class T_User {
     private Integer id;
 
-    private Integer uid;
+    private String uid;
 
-    private Integer credits;
 
     public Integer getId() {
         return id;
@@ -15,19 +14,11 @@ public class T_User {
         this.id = id;
     }
 
-    public Integer getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
-
-    public Integer getCredits() {
-        return credits;
-    }
-
-    public void setCredits(Integer credits) {
-        this.credits = credits;
+    public void setUid(String uid) {
+        this.uid = uid == null ? null : uid.trim();
     }
 }

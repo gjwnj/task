@@ -9,7 +9,7 @@ public interface T_User_Sign_InMapper {
 
     int insertSelective(T_User_Sign_In record);
 
-    T_User_Sign_In selectByPrimaryKey(Integer id);
+    T_User_Sign_In selectByPrimaryKey(String uid);
 
     int updateByPrimaryKeySelective(T_User_Sign_In record);
 

@@ -1,11 +1,14 @@
 package com.example.demo.mybatis.model;
 
-public class T_Task_Menu {
+import java.io.Serializable;
+
+public class T_Task_Menu implements Serializable  
+{
     private Integer id;
 
     private String name;
 
-    private Integer creater;
+    private String creater;
 
     public Integer getId() {
         return id;
@@ -23,11 +26,11 @@ public class T_Task_Menu {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getCreater() {
+    public String getCreater() {
         return creater;
     }
 
-    public void setCreater(Integer creater) {
-        this.creater = creater;
+    public void setCreater(String creater) {
+        this.creater = creater == null ? null : creater.trim();
     }
 }

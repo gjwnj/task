@@ -3,11 +3,11 @@
 <mapper namespace="com.example.demo.mybatis.mapper.T_Task_MenuMapper">
   <resultMap id="BaseResultMap" type="com.example.demo.mybatis.model.T_Task_Menu">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="creater" jdbcType="INTEGER" property="creater" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, creater
+    id, NAME, creater
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -15,14 +15,22 @@
     from t_task_menu
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectUserAllTaskType" parameterType="java.lang.String" resultType="com.example.demo.data.vo.UserAllTaskType">
+  select
+  id, NAME
+  from t_task_menu
+  where creater="system" or creater=#{uid,jdbcType=VARCHAR}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_task_menu
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.demo.mybatis.model.T_Task_Menu">
-    insert into t_task_menu (id, name, creater
+    insert into t_task_menu (id, NAME, creater
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{creater,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.mybatis.model.T_Task_Menu">
@@ -32,7 +40,7 @@
         id,
       </if>
       <if test="name != null">
-        name,
+        NAME,
       </if>
       <if test="creater != null">
         creater,
@@ -46,7 +54,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="creater != null">
-        #{creater,jdbcType=INTEGER},
+        #{creater,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -54,18 +62,18 @@
     update t_task_menu
     <set>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        NAME = #{name,jdbcType=VARCHAR},
       </if>
       <if test="creater != null">
-        creater = #{creater,jdbcType=INTEGER},
+        creater = #{creater,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.demo.mybatis.model.T_Task_Menu">
     update t_task_menu
-    set name = #{name,jdbcType=VARCHAR},
-      creater = #{creater,jdbcType=INTEGER}
+    set NAME = #{name,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

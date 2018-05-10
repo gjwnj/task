@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.data.ResponseResult;
 import com.example.demo.mybatis.model.T_User;
 
 public interface UserService

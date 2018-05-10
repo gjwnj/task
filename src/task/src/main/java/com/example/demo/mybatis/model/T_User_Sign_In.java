@@ -1,15 +1,18 @@
 package com.example.demo.mybatis.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class T_User_Sign_In {
     private Integer id;
 
-    private Integer uid;
+    private String uid;
 
-    private Date signinTime;
+    private LocalDateTime signinTime;
 
     private Integer lastday;
+    
+    private Integer credits;
 
     public Integer getId() {
         return id;
@@ -19,19 +22,19 @@ public class T_User_Sign_In {
         this.id = id;
     }
 
-    public Integer getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setUid(String uid) {
+        this.uid = uid == null ? null : uid.trim();
     }
 
-    public Date getSigninTime() {
+    public LocalDateTime getSigninTime() {
         return signinTime;
     }
 
-    public void setSigninTime(Date signinTime) {
+    public void setSigninTime(LocalDateTime signinTime) {
         this.signinTime = signinTime;
     }
 
@@ -42,4 +45,14 @@ public class T_User_Sign_In {
     public void setLastday(Integer lastday) {
         this.lastday = lastday;
     }
+
+	public Integer getCredits()
+	{
+		return credits;
+	}
+
+	public void setCredits(Integer credits)
+	{
+		this.credits = credits;
+	}
 }
