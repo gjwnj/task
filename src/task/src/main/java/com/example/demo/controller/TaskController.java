@@ -27,19 +27,19 @@ public class TaskController
 		return rr;
 	}
 	//处理按时间查询已完成任务
-	@RequestMapping(value="/time/{timevalue}/{taskname}/{uid}",method=RequestMethod.GET)
-	public ResponseResult getTaskByName(@PathVariable String timevalue,@PathVariable String taskname,@PathVariable String uid)
+	@RequestMapping(value={"/time/{timevalue}/taskname/{taskname}/uid/{uid}","/time/{timevalue}/tasktype/{tasktype}/uid/{uid}","/time/{timevalue}/taskname/{taskname}/tasktype/{tasktype}/uid/{uid}"},method=RequestMethod.GET)
+	public ResponseResult getTaskByName(@PathVariable String timevalue,@PathVariable(required=false) String taskname,@PathVariable(required=false) String tasktype,@PathVariable String uid)
 	{
 		//System.out.println(timevalue);
-		ResponseResult rr=ts.getTaskByName(timevalue, taskname, uid);
+		ResponseResult rr=ts.getTaskByTime(timevalue, taskname, tasktype,uid);
 		return rr;
 	}
 	//处理请求未完成任务
-	@RequestMapping(value="/{uid}/{pageNo}/{pageSize}",method=RequestMethod.GET)
-	public ResponseResult getTask(@PathVariable String uid, @PathVariable String pageNo,@PathVariable String pageSize)
+	@RequestMapping(value="/{uid}/{pageNo}/{pageSize}/{isstarted}",method=RequestMethod.GET)
+	public ResponseResult getTask(@PathVariable String uid, @PathVariable String pageNo,@PathVariable String pageSize,@PathVariable int isstarted)
 	{
 		//System.out.println("uid:"+uid);
-		ResponseResult rr=ts.getTask(uid, pageNo, pageSize);
+		ResponseResult rr=ts.getTask(uid, pageNo, pageSize,isstarted);
 		return rr;
 	}
 	//处理结束任务
