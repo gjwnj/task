@@ -39,11 +39,11 @@ public class TaskServiceImpl implements TaskService
 	}
 
 	@Override
-	public ResponseResult getTask(String uid,String pageNo,String pageSize)
+	public ResponseResult getTask(String uid,String pageNo,String pageSize,int isstarted)
 	{
 		Page p=PageHelper.startPage(Integer.parseInt(pageNo),
 				Integer.parseInt(pageSize));
-		UserAllTaskVo result=ttm.selectByPrimaryKey(uid);
+		UserAllTaskVo result=ttm.selectByPrimaryKey(uid,isstarted);
 		int pageSum=p.getPages();
 		if(result!=null)
 		{
@@ -68,10 +68,10 @@ public class TaskServiceImpl implements TaskService
 	}
 
 	@Override
-	public ResponseResult getTaskByName(String timevalue,String taskname,String uid)
+	public ResponseResult getTaskByTime(String timevalue,String taskname,String tasktype,String uid)
 	{
 		// TODO Auto-generated method stub
-		List<UserAllTaskVo> result=ttm.selectByNameOrTypeAndTime(uid, taskname, null);
+		List<UserAllTaskVo> result=ttm.selectByNameOrTypeAndTime(uid, taskname, tasktype);
 		
 		return new ResponseResult(ResultCode.SUCCESS,result);
 	}

@@ -23,18 +23,29 @@
   <select id="selectByNameOrTypeAndTime" parameterType="java.lang.String" resultType="com.example.demo.data.vo.UserAllTaskVo">
     select taskname, starttime, endtime,actualfinishtime
     from t_task
-    where taskowner=#{taskowner,jdbcType=VARCHAR} 
+    where taskowner=#{taskowner,jdbcType=VARCHAR}
+    <if test="taskname !=null">
     AND taskname LIKE concat("%",#{taskname,jdbcType=VARCHAR},"%")
+    </if>
+    <if test="tasktype !=null">
+    and tasktype like #{tasktype,jdbcType=VARCHAR}
+    </if> 
     AND actualfinishtime is not null
     AND DATE(endtime)>=DATE_SUB(CURDATE(),INTERVAL 6 DAY)
     order by endtime
   </select>
-  
+  <!-- &lt;小于号的XML转义字符 查询未完成根据条件查询已开始或者未开始的任务 -->
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="com.example.demo.data.vo.UserAllTaskVo">
     select taskdesc, taskname, starttime, endtime,id
     from t_task
     where taskowner=#{taskowner,jdbcType=VARCHAR} 
     and actualfinishtime is null
+    <if test="isstarted == 0">
+    AND starttime &gt;=NOW()
+    </if>
+    <if test="isstarted == 1">
+    AND starttime &lt;=NOW()
+    </if>
     order by endtime
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
