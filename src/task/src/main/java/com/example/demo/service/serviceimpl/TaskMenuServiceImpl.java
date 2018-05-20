@@ -11,6 +11,7 @@ import com.example.demo.data.ResultCode;
 import com.example.demo.data.vo.UserAllTaskType;
 import com.example.demo.mybatis.mapper.T_TaskMapper;
 import com.example.demo.mybatis.mapper.T_Task_MenuMapper;
+import com.example.demo.mybatis.model.T_Task_Menu;
 import com.example.demo.service.TaskMenuService;
 @Service("taskmenuservice")
 public class TaskMenuServiceImpl implements TaskMenuService
@@ -23,6 +24,21 @@ public class TaskMenuServiceImpl implements TaskMenuService
 		List<UserAllTaskType> re=tt.selectUserAllTaskType(uid);
 		
 		return new ResponseResult(ResultCode.SUCCESS,re);
+	}
+
+	@Override
+	public ResponseResult AddTaskType(T_Task_Menu typevalue)
+	{
+		// TODO Auto-generated method stub
+		int re=tt.insertSelective(typevalue);
+		if(re>0)
+		{
+			return new ResponseResult();
+		}
+		else
+		{
+			return new ResponseResult(ResultCode.INTERNAL_ERROR);
+		}
 	}
 
 }

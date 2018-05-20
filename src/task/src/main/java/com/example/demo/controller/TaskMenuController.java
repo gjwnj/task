@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.data.ResponseResult;
 import com.example.demo.data.User_JM;
+import com.example.demo.mybatis.model.T_Task_Menu;
 import com.example.demo.service.TaskMenuService;
 
 @RestController
@@ -23,6 +24,12 @@ public class TaskMenuController
 	public ResponseResult GetType(@PathVariable String openid)
 	{
 		ResponseResult rr=ts.GetUserAllTaskType(openid);
+		return rr;
+	}
+	@RequestMapping(value="/",method=RequestMethod.POST)
+	public ResponseResult AddType(@RequestBody T_Task_Menu typevalue)
+	{
+		ResponseResult rr=ts.AddTaskType(typevalue);
 		return rr;
 	}
 

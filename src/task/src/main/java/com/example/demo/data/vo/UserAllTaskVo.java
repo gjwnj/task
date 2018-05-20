@@ -22,6 +22,8 @@ public class UserAllTaskVo implements Serializable
     private int id;
     
     private Date actualfinishtime;
+    
+    private String tasktype;
 
 	public String getTaskdesc()
 	{
@@ -91,6 +93,16 @@ public class UserAllTaskVo implements Serializable
 	public void setActualfinishtime(Date actualfinishtime)
 	{
 		this.actualfinishtime = actualfinishtime;
+	}
+
+	public String getTasktype()
+	{
+		return tasktype;
+	}
+
+	public void setTasktype(String tasktype)
+	{
+		this.tasktype = tasktype;
 	}
 
 

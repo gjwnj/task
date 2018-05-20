@@ -36,7 +36,7 @@
   </select>
   <!-- &lt;小于号的XML转义字符 查询未完成根据条件查询已开始或者未开始的任务 -->
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="com.example.demo.data.vo.UserAllTaskVo">
-    select taskdesc, taskname, starttime, endtime,id
+    select taskdesc, taskname,tasktype, starttime, endtime,id
     from t_task
     where taskowner=#{taskowner,jdbcType=VARCHAR} 
     and actualfinishtime is null
@@ -137,6 +137,9 @@
     <set>
       <if test="taskdesc != null">
         taskdesc = #{taskdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="tasktype !=null">
+      tasktype=#{tasktype,jdbcType=VARCHAR}
       </if>
       <if test="taskname != null">
         taskname = #{taskname,jdbcType=VARCHAR},

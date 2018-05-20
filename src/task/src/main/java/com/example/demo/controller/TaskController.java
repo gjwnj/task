@@ -46,9 +46,8 @@ public class TaskController
 	@RequestMapping(value="/",method=RequestMethod.PUT)
 	public ResponseResult FinishTask(@RequestBody T_Task tt)
 	{
-		//System.out.println(tt.getTaskowner());
-		//System.out.println(tt.getActualfinishtime());
-		//System.out.println(tt.getId());
+		System.out.println(tt.getTaskdesc());
+		System.out.println(tt.getId());
 		ResponseResult rr=ts.updateTask(tt);
 		return rr;
 	}
@@ -63,5 +62,5 @@ public class TaskController
 		ResponseResult rr=ts.judgeTask(tt);
 		return rr;
 	}
-
+	
 }

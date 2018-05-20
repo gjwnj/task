@@ -75,13 +75,32 @@ WHERE taskowner = 'oU6C35cw4RrAy1Fa1EjA8hwgWSWs'
   AND actualfinishtime IS NOT NULL 
   AND YEARWEEK(DATE_FORMAT(actualfinishtime,'%Y-%m-%d'))=YEARWEEK(NOW())-1
   
+-- 查询未开始的任务
+SELECT 
+  * 
+FROM
+  t_task 
+WHERE taskowner = 'oU6C35cw4RrAy1Fa1EjA8hwgWSWs' 
+  AND actualfinishtime IS NULL 
+  AND starttime>NOW()
+-- and starttime>date_add(curdate(),interval 30 minute)，这句SQL不正确，但却不会影响上面语句的执行
+  ORDER BY  starttime 
+  
+-- 查询已开始但未完成的任务
+SELECT taskdesc, taskname, starttime, endtime,id
+    FROM t_task
+    WHERE taskowner='oU6C35cw4RrAy1Fa1EjA8hwgWSWs' 
+    AND actualfinishtime IS NULL
+    AND starttime<=NOW()
+    ORDER BY endtime
+  
 -- 查询最近7天已完成的任务
 SELECT 
   * 
 FROM
   t_task 
 WHERE taskowner = 'oU6C35cw4RrAy1Fa1EjA8hwgWSWs'
-  AND taskname LIKE '%caolu%' 
+  AND taskname LIKE '%test%' 
   AND actualfinishtime IS NOT NULL 
   AND DATE(endtime)>=DATE_SUB(CURDATE(),INTERVAL 6 DAY)
   ORDER BY endtime
