@@ -24,6 +24,12 @@ public class UserAllTaskVo implements Serializable
     private Date actualfinishtime;
     
     private String tasktype;
+    
+    private String childeva;
+
+    private Integer selfAssessment;
+    
+    private String parentcheck;
 
 	public String getTaskdesc()
 	{
@@ -103,6 +109,36 @@ public class UserAllTaskVo implements Serializable
 	public void setTasktype(String tasktype)
 	{
 		this.tasktype = tasktype;
+	}
+
+	public String getChildeva()
+	{
+		return childeva;
+	}
+
+	public void setChildeva(String childeva)
+	{
+		this.childeva = childeva;
+	}
+
+	public Integer getSelfAssessment()
+	{
+		return selfAssessment;
+	}
+
+	public void setSelfAssessment(Integer selfAssessment)
+	{
+		this.selfAssessment = selfAssessment;
+	}
+
+	public String getParentcheck()
+	{
+		return parentcheck;
+	}
+
+	public void setParentcheck(String parentcheck)
+	{
+		this.parentcheck = parentcheck;
 	}
 
 

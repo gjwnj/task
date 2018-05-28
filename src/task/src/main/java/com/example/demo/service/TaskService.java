@@ -10,5 +10,6 @@ public interface TaskService
 	public ResponseResult getTaskByTime(String timevalue,String taskname,String tasktype,String uid);
 	public ResponseResult updateTask(T_Task tt);
 	public ResponseResult judgeTask(T_Task tt);
+	public ResponseResult getDoneTask(String uid,String pageNo,String pageSize);
 
 }

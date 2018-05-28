@@ -20,6 +20,8 @@ public interface T_TaskMapper {
     //后端采用mybatis分页
     UserAllTaskVo selectByPrimaryKey(@Param("taskowner") String uid,@Param("isstarted") int isstarted);
     
+    UserAllTaskVo selectByDone(@Param("taskowner") String uid);
+    
     List<UserAllTaskVo> selectByNameOrTypeAndTime(@Param("taskowner") String uid,@Param("taskname") String taskname,@Param("tasktype") String tasktype);
 
     int updateByPrimaryKeySelective(T_Task record);

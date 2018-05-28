@@ -91,4 +91,18 @@ public class TaskServiceImpl implements TaskService
 		}
 	}
 
+	@Override
+	public ResponseResult getDoneTask(String uid, String pageNo, String pageSize)
+	{
+		Page p=PageHelper.startPage(Integer.parseInt(pageNo),
+				Integer.parseInt(pageSize));
+		UserAllTaskVo result=ttm.selectByDone(uid);
+		int pageSum=p.getPages();
+		if(result!=null)
+		{
+			result.setPageSum(pageSum);
+		}
+		return new ResponseResult(ResultCode.SUCCESS,result);
+	}
+
 }

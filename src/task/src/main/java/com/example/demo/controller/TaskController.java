@@ -34,6 +34,12 @@ public class TaskController
 		ResponseResult rr=ts.getTaskByTime(timevalue, taskname, tasktype,uid);
 		return rr;
 	}
+	@RequestMapping(value="/all/{uid}/{pageNo}/{pageSize}",method=RequestMethod.GET)
+	public ResponseResult getDoneTask(@PathVariable String uid,@PathVariable String pageNo,@PathVariable String pageSize)
+	{
+		ResponseResult rr=ts.getDoneTask(uid, pageNo, pageSize);
+		return rr;
+	}
 	//处理请求未完成任务
 	@RequestMapping(value="/{uid}/{pageNo}/{pageSize}/{isstarted}",method=RequestMethod.GET)
 	public ResponseResult getTask(@PathVariable String uid, @PathVariable String pageNo,@PathVariable String pageSize,@PathVariable int isstarted)

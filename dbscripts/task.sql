@@ -47,6 +47,10 @@ INSERT INTO t_task_menu(NAME,creater) VALUES
 ("数学","system"),
 ("英语","system");
 
+INSERT INTO t_task_menu(NAME,creater) VALUES
+("书法","system"),
+("乐器","system");
+
 --
 DELIMITER
 CREATE PROCEDURE pro_sign_in(IN userid VARCHAR(30))
