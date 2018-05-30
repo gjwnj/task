@@ -52,8 +52,8 @@ public class TaskController
 	@RequestMapping(value="/",method=RequestMethod.PUT)
 	public ResponseResult FinishTask(@RequestBody T_Task tt)
 	{
-		System.out.println(tt.getTaskdesc());
-		System.out.println(tt.getId());
+//		System.out.println(tt.getTaskdesc());
+//		System.out.println(tt.getId());
 		ResponseResult rr=ts.updateTask(tt);
 		return rr;
 	}
@@ -61,10 +61,10 @@ public class TaskController
 	@RequestMapping(value="/judge/",method=RequestMethod.PUT)
 	public ResponseResult JudgeTask(@RequestBody T_Task tt)
 	{
-		System.out.println(tt.getChildeva());
-		System.out.println(tt.getSelfAssessment());
-		System.out.println(tt.getParentcheck());
-		System.out.println(tt.getId());
+//		System.out.println(tt.getChildeva());
+//		System.out.println(tt.getSelfAssessment());
+//		System.out.println(tt.getParentcheck());
+//		System.out.println(tt.getId());
 		ResponseResult rr=ts.judgeTask(tt);
 		return rr;
 	}
