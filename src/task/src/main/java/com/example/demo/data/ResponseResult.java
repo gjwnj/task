@@ -2,10 +2,6 @@ package com.example.demo.data;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-
 public class ResponseResult<T> implements Serializable
 {
 	private String code;
